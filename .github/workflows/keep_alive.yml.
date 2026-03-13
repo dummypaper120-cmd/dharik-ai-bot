@@ -1,0 +1,14 @@
+name: 24/7 Dharik AI Bot Keep-Alive
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Ovvoru 5 nimishathukkum server-e auto-va run pannum
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake Up Bot Engine
+        run: |
+          curl -s https://dummypaper120-cmd.github.io/dharik-ai-bot/
+          echo "Server Pinged! Signal Engine is Active."
