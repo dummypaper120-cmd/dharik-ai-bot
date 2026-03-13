@@ -1,14 +1,17 @@
-name: 24/7 Dharik AI Bot Keep-Alive
+name: 24/7 Dharik AI Engine
 on:
   schedule:
-    - cron: '*/5 * * * *' # Ovvoru 5 nimishathukkum server-e auto-va run pannum
+    - cron: '*/2 * * * *' # Ovvoru 2 nimishathukkum automatic-aa run aagum
   workflow_dispatch:
 
 jobs:
-  ping:
+  run-bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Wake Up Bot Engine
-        run: |
-          curl -s https://dummypaper120-cmd.github.io/dharik-ai-bot/
-          echo "Server Pinged! Signal Engine is Active."
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Run Engine
+        run: node bot.js
